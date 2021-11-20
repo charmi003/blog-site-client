@@ -3,7 +3,7 @@ import { REMOVE_USER_FROM_STATE, SET_USERS } from './adminTypes';
 
 export const fetchUsers=()=>{
     return (dispatch)=>{
-        axios.get('https://blog-site-server-pcn1dzugd-charmi003.vercel.app/admin/all-users',{
+        axios.get('https://blog-site-server.vercel.app/admin/all-users',{
             'headers':{
                 'x-access-token':window.localStorage.token
             }
@@ -19,7 +19,7 @@ export const fetchUsers=()=>{
 
 export const deleteUser=(userId,alert)=>{
     return (dispatch)=>{
-        axios.get(`https://blog-site-server-pcn1dzugd-charmi003.vercel.app/admin/delete-user/${userId}`,{
+        axios.get(`https://blog-site-server.vercel.app/admin/delete-user/${userId}`,{
             'headers':{
                 'x-access-token':window.localStorage.token
             }
@@ -47,7 +47,7 @@ export const addContentWriter=(data,alert,setUsername,setPassword)=>{
                 'x-access-token':window.localStorage.token
             }
         }
-        axios.post('https://blog-site-server-pcn1dzugd-charmi003.vercel.app/admin/add-content-writer',JSON.stringify(dataObj),config).then((response)=>{
+        axios.post('https://blog-site-server.vercel.app/admin/add-content-writer',JSON.stringify(dataObj),config).then((response)=>{
             if(!response.data.user){
                 alert.show(response.data.message,{ type:'error' });
                 document.querySelector('.signup-form-btn').disabled=false;

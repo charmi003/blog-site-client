@@ -5,7 +5,7 @@ import axios from 'axios';
 export const fetchLoginStatus=()=>{
     return (dispatch)=>{
         axios.defaults.withCredentials=true;
-        axios.get("https://blog-site-server-pcn1dzugd-charmi003.vercel.app/auth/login-status").then((response)=>{
+        axios.get("https://blog-site-server.vercel.app/auth/login-status").then((response)=>{
             dispatch(setLoginStatus(response.data.isLoggedIn));
             dispatch(setUser(response.data.user));
         }).catch((err)=>{
@@ -31,7 +31,7 @@ export const login=(data,alert,navigate)=>{
                 'content-type':'application/JSON'
             }
         }
-        axios.post('https://blog-site-server-pcn1dzugd-charmi003.vercel.app/auth/login',JSON.stringify(data),config).then((response)=>{
+        axios.post('https://blog-site-server.vercel.app/auth/login',JSON.stringify(data),config).then((response)=>{
             if(response.data.user){
                 dispatch(setLoginStatus(true));
                 dispatch(setUser(response.data.user));
@@ -56,7 +56,7 @@ export const login=(data,alert,navigate)=>{
 
 export const logout=(alert,navigate)=>{
     return (dispatch)=>{
-        axios.get('https://blog-site-server-pcn1dzugd-charmi003.vercel.app/auth/logout').then((response)=>{
+        axios.get('https://blog-site-server.vercel.app/auth/logout').then((response)=>{
             dispatch(setLoginStatus(false));
             dispatch(setUser(null));
             alert.show("Logged out!",{ type:"success" });

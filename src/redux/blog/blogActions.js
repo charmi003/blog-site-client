@@ -16,7 +16,7 @@ export const createBlog=(data,alert,navigate)=>{
             isApproved:false
         }
     
-        axios.post('https://blog-site-server-pcn1dzugd-charmi003.vercel.app/blogs/create',JSON.stringify(dataObj),config).then((response)=>{
+        axios.post('https://blog-site-server.vercel.app/blogs/create',JSON.stringify(dataObj),config).then((response)=>{
             if(response.data.blog){
                 dispatch({ type:ADD_CREATED_BLOG_IN_STATE, payload:response.data.blog })
                 alert.show("Blog created!",{ type:"success" });
@@ -42,7 +42,7 @@ export const createBlog=(data,alert,navigate)=>{
 
 export const fetchBlogs=()=>{
     return (dispatch)=>{
-        axios.get('https://blog-site-server-pcn1dzugd-charmi003.vercel.app/blogs/all-blogs').then((response)=>{
+        axios.get('https://blog-site-server.vercel.app/blogs/all-blogs').then((response)=>{
             dispatch({ type:SET_BLOGS, payload:response.data.blogs });
             let approved_blogs=response.data.blogs.filter((b)=>b.isApproved===true);
             dispatch({ type:SET_APPROVED_BLOGS, payload:approved_blogs });
@@ -56,7 +56,7 @@ export const fetchBlogs=()=>{
 
 export const fetchMyBlogs=()=>{
     return (dispatch,getState)=>{
-            axios.get(`https://blog-site-server-pcn1dzugd-charmi003.vercel.app/blogs/my-blogs/${getState().auth.user._id}`,{
+            axios.get(`https://blog-site-server.vercel.app/blogs/my-blogs/${getState().auth.user._id}`,{
                 'headers':{
                     'x-access-token':window.localStorage.token
                 }
@@ -74,7 +74,7 @@ export const fetchMyBlogs=()=>{
 
 export const deleteBlog=(blogId,alert)=>{
     return (dispatch)=>{
-        axios.get(`https://blog-site-server-pcn1dzugd-charmi003.vercel.app/admin/delete-blog/${blogId}`,{
+        axios.get(`https://blog-site-server.vercel.app/admin/delete-blog/${blogId}`,{
             'headers':{
                 'x-access-token':window.localStorage.token
             }
@@ -92,7 +92,7 @@ export const deleteBlog=(blogId,alert)=>{
 
 export const approveBlog=(blogId,alert)=>{
     return (dispatch)=>{
-        axios.get(`https://blog-site-server-pcn1dzugd-charmi003.vercel.app/admin/approve-blog/${blogId}`,{
+        axios.get(`https://blog-site-server.vercel.app/admin/approve-blog/${blogId}`,{
             'headers':{
                 'x-access-token':window.localStorage.token
             }

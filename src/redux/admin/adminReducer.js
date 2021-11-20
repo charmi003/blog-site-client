@@ -1,4 +1,4 @@
-import {  REMOVE_BLOG_FROM_STATE, REMOVE_USER_FROM_STATE, SET_USERS } from "./adminTypes"
+import {  REMOVE_USER_FROM_STATE, SET_USERS } from "./adminTypes"
 
 const initialState={
     users:[]
